@@ -4,19 +4,17 @@ from flask import Flask, request, jsonify
 import pickle as p
 
 app = Flask(__name__)
-with open("text.txt", "r") as file:
-    str1 = str(file.read())
-print(str1)
-# modelfile = '/knnpickle_file'
-# model = p.load(open(modelfile, 'rb'))
+
+modelfile = '/knnpickle_file'
+model = p.load(open(modelfile, 'rb'))
 
 @app.route('/', methods=['POST'])
 def makecalc():
-    # data = request.get_json()
-    # prediction = model.predict(data)
-    # flower = ['Setosa', 'Versicolor', 'Virginica']
-    # prediction = flower[int(prediction)]
-    return jsonify(str1)
+    data = request.get_json()
+    prediction = model.predict(data)
+    flower = ['Setosa', 'Versicolor', 'Virginica']
+    prediction = flower[int(prediction)]
+    return jsonify(prediction)
 
 
 if __name__ == '__main__':
