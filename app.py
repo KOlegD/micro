@@ -4,8 +4,8 @@ from flask import Flask, request, jsonify
 import pickle as p
 
 app = Flask(__name__)
-# modelfile = 'knnpickle_file'
-# model = p.load(open(modelfile, 'rb'))
+modelfile = 'knnpickle_file'
+model = p.load(open(modelfile, 'rb'))
 @app.route('/', methods=['POST'])
 def makecalc():
     # data = request.get_json()
